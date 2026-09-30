@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128;
+    }
+
+    // Workshop Settings
+    match /app_settings/{settingId} {
+      allow read, write: if isValidId(settingId);
+    }
+
+    // Employees Collection
+    match /employees/{employeeId} {
+      allow read, write: if isValidId(employeeId);
+    }
+
+    // Attendance Records
+    match /attendance/{attendanceId} {
+      allow read, write: if isValidId(attendanceId);
+    }
+
+    // Payments & Advances
+    match /payments/{paymentId} {
+      allow read, write: if isValidId(paymentId);
+    }
+
+    // Salary Summary Records
+    match /salary_records/{recordId} {
+      allow read, write: if isValidId(recordId);
+    }
+
+    // User Accounts
+    match /users/{userId} {
+      allow read, write: if isValidId(userId);
+    }
+  }
+}

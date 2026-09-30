@@ -1,0 +1,6 @@
+{
+  "name": "Business Adda",
+  "description": "Smart Employee Attendance, Salary Calculation & Payment Register for Small Business & Workshop Owners",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

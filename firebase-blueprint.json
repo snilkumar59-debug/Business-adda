@@ -1,0 +1,116 @@
+{
+  "entities": {
+    "users": {
+      "title": "Users",
+      "description": "System accounts for Admin and linked Employees",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "employee"] },
+        "employeeId": { "type": "string" },
+        "employeeCode": { "type": "string" },
+        "mobileNumber": { "type": "string" },
+        "displayName": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "role"]
+    },
+    "employees": {
+      "title": "Employees",
+      "description": "Employee profile records created by Admin",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "employeeCode": { "type": "string" },
+        "name": { "type": "string" },
+        "mobileNumber": { "type": "string" },
+        "joiningDate": { "type": "string" },
+        "jobType": { "type": "string" },
+        "dailySalary": { "type": "number" },
+        "address": { "type": "string" },
+        "notes": { "type": "string" },
+        "photoUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "employeeCode", "name", "mobileNumber", "dailySalary", "status"]
+    },
+    "attendance": {
+      "title": "Attendance",
+      "description": "Daily employee attendance status recorded by Admin",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "date": { "type": "string" },
+        "month": { "type": "string" },
+        "status": { "type": "string", "enum": ["present", "absent", "half_day", "leave"] },
+        "leavePaid": { "type": "boolean" },
+        "notes": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "employeeId", "date", "month", "status"]
+    },
+    "payments": {
+      "title": "Payments",
+      "description": "Payment transactions (advances, salary payments, final settlements)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "date": { "type": "string" },
+        "month": { "type": "string" },
+        "amount": { "type": "number" },
+        "type": { "type": "string", "enum": ["advance", "salary_payment", "final_settlement", "other"] },
+        "paymentMode": { "type": "string", "enum": ["cash", "upi", "bank_transfer"] },
+        "note": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "employeeId", "date", "month", "amount", "type"]
+    },
+    "salary_records": {
+      "title": "Salary Records",
+      "description": "Monthly calculated salary summaries per employee",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "month": { "type": "string" },
+        "dailyRate": { "type": "number" },
+        "presentDays": { "type": "number" },
+        "halfDays": { "type": "number" },
+        "absentDays": { "type": "number" },
+        "leaveDays": { "type": "number" },
+        "paidDays": { "type": "number" },
+        "basicSalary": { "type": "number" },
+        "advance": { "type": "number" },
+        "otherPayments": { "type": "number" },
+        "totalPaid": { "type": "number" },
+        "pendingAmount": { "type": "number" },
+        "finalSalary": { "type": "number" },
+        "adjustmentAmount": { "type": "number" },
+        "adjustmentNote": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "employeeId", "month", "dailyRate", "paidDays", "basicSalary", "totalPaid", "pendingAmount"]
+    },
+    "app_settings": {
+      "title": "App Settings",
+      "description": "Workshop or business details and global configurations",
+      "type": "object",
+      "properties": {
+        "businessName": { "type": "string" },
+        "ownerName": { "type": "string" },
+        "ownerMobile": { "type": "string" },
+        "address": { "type": "string" },
+        "currency": { "type": "string" },
+        "defaultLeaveIsPaid": { "type": "boolean" }
+      }
+    }
+  }
+}
